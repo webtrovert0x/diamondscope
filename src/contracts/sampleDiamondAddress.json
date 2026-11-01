@@ -1,0 +1,10 @@
+{
+  "diamondAddress": "0x4687550cE4CdCAd54F2b7E0eeDDaa4A49f7fB98E",
+  "facets": {
+    "DiamondCutFacet": "0x571D629F88BBB51C8811C2142828CE2905192df9",
+    "DiamondLoupeFacet": "0xB532F24d529115070897B446D8a756Fa58D3bBDE",
+    "OwnershipFacet": "0x2e73561f29207c24af703F1572c534d8EA2a5a63",
+    "SampleVaultFacet": "0x6f285f2a94825F07eB2EDB18ebb943E4F3551f27"
+  },
+  "deployedAt": "2026-11-01T08:37:07.611Z"
+}

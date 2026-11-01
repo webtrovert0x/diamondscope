@@ -1,0 +1,113 @@
+export const diamondScopeAbi = [
+  {
+    inputs: [{ internalType: "address", name: "_diamondAddress", type: "address" }],
+    name: "requestDiamondCheck",
+    outputs: [{ internalType: "uint256", name: "requestId", type: "uint256" }],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "_requestId", type: "uint256" },
+      { internalType: "uint256", name: "_facetCount", type: "uint256" },
+      { internalType: "uint256", name: "_selectorCount", type: "uint256" },
+      { internalType: "string", name: "_diagnosticSummary", type: "string" },
+    ],
+    name: "publishResult",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "_requestId", type: "uint256" }],
+    name: "getRequest",
+    outputs: [
+      {
+        components: [
+          { internalType: "uint256", name: "requestId", type: "uint256" },
+          { internalType: "address", name: "diamondAddress", type: "address" },
+          { internalType: "address", name: "requester", type: "address" },
+          { internalType: "uint256", name: "timestamp", type: "uint256" },
+          { internalType: "bool", name: "isCompleted", type: "bool" },
+          { internalType: "uint256", name: "facetCount", type: "uint256" },
+          { internalType: "uint256", name: "selectorCount", type: "uint256" },
+          { internalType: "string", name: "diagnosticSummary", type: "string" },
+        ],
+        internalType: "struct DiamondScope.DiamondRequest",
+        name: "",
+        type: "tuple",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "_diamondAddress", type: "address" }],
+    name: "getRequestsByDiamond",
+    outputs: [{ internalType: "uint256[]", name: "", type: "uint256[]" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "_user", type: "address" }],
+    name: "getRequestsByUser",
+    outputs: [{ internalType: "uint256[]", name: "", type: "uint256[]" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "_limit", type: "uint256" }],
+    name: "getRecentRequests",
+    outputs: [
+      {
+        components: [
+          { internalType: "uint256", name: "requestId", type: "uint256" },
+          { internalType: "address", name: "diamondAddress", type: "address" },
+          { internalType: "address", name: "requester", type: "address" },
+          { internalType: "uint256", name: "timestamp", type: "uint256" },
+          { internalType: "bool", name: "isCompleted", type: "bool" },
+          { internalType: "uint256", name: "facetCount", type: "uint256" },
+          { internalType: "uint256", name: "selectorCount", type: "uint256" },
+          { internalType: "string", name: "diagnosticSummary", type: "string" },
+        ],
+        internalType: "struct DiamondScope.DiamondRequest[]",
+        name: "",
+        type: "tuple[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "requestCount",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: true, internalType: "uint256", name: "requestId", type: "uint256" },
+      { indexed: true, internalType: "address", name: "diamondAddress", type: "address" },
+      { indexed: true, internalType: "address", name: "requester", type: "address" },
+      { indexed: false, internalType: "uint256", name: "timestamp", type: "uint256" },
+    ],
+    name: "DiamondCheckRequested",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: true, internalType: "uint256", name: "requestId", type: "uint256" },
+      { indexed: true, internalType: "address", name: "diamondAddress", type: "address" },
+      { indexed: false, internalType: "uint256", name: "facetCount", type: "uint256" },
+      { indexed: false, internalType: "uint256", name: "selectorCount", type: "uint256" },
+      { indexed: false, internalType: "address", name: "publisher", type: "address" },
+      { indexed: false, internalType: "uint256", name: "timestamp", type: "uint256" },
+    ],
+    name: "DiamondCheckPublished",
+    type: "event",
+  },
+] as const;
+
