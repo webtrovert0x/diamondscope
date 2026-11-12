@@ -33,4 +33,31 @@ module.exports = {
       accounts: [PRIVATE_KEY],
     },
   },
+  etherscan: {
+    apiKey: {
+      mainnet: "dummy",
+      botchain: "dummy",
+    },
+    customChains: [
+      {
+        network: "mainnet",
+        chainId: 677,
+        urls: {
+          apiURL: "https://scan.botchain.ai/api",
+          browserURL: "https://scan.botchain.ai",
+        },
+      },
+      {
+        network: "botchain",
+        chainId: 677,
+        urls: {
+          apiURL: "https://scan.botchain.ai/api",
+          browserURL: "https://scan.botchain.ai",
+        },
+      },
+    ],
+  },
+  sourcify: {
+    enabled: false,
+  },
 };
