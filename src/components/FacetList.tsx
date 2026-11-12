@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Copy, Check, ExternalLink, Filter, Layers, Code, Hash } from 'lucide-react';
 import { classifyFacet } from '../utils/selectors';
+import { getExplorerAddressUrl } from '../utils/explorer';
 
 interface FacetData {
   address: string;
@@ -147,12 +148,12 @@ export const FacetList: React.FC<FacetListProps> = ({ facets }) => {
                 </div>
 
                 <a
-                  href={`https://scan.bohr.life/address/${facet.address}`}
+                  href={getExplorerAddressUrl(facet.address)}
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-semibold text-slate-700 hover:text-emerald-700 hover:border-emerald-300 transition shrink-0 self-start sm:self-auto"
                 >
-                  <span>BohrScan Explorer</span>
+                  <span>Explorer</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>

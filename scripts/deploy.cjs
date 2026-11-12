@@ -3,8 +3,13 @@ const fs = require("fs");
 const path = require("path");
 
 async function main() {
+  const chainId = Number(hre.network.config.chainId || 677);
+  const isMainnet = chainId === 677;
+  const explorerUrl = isMainnet ? "https://scan.botchain.ai" : "https://scan.bohr.life";
+  const networkName = isMainnet ? "Botchain Mainnet (Chain ID 677)" : "Botchain Testnet (Chain ID 968)";
+
   console.log("--------------------------------------------------");
-  console.log("Deploying DiamondScope to Botchain Testnet (Chain ID 968)...");
+  console.log(`Deploying DiamondScope to ${networkName}...`);
   console.log("RPC:", hre.network.config.url);
 
   const [deployer] = await hre.ethers.getSigners();
@@ -23,7 +28,7 @@ async function main() {
   const contractAddress = await diamondScope.getAddress();
   console.log("✅ DiamondScope deployed successfully!");
   console.log("Contract Address:", contractAddress);
-  console.log("Explorer Link:", `https://scan.bohr.life/address/${contractAddress}`);
+  console.log("Explorer Link:", `${explorerUrl}/address/${contractAddress}`);
   console.log("--------------------------------------------------");
 
   // Update .env file
@@ -49,10 +54,11 @@ async function main() {
   }
   const deploymentInfo = {
     address: contractAddress,
-    network: "botchain",
-    chainId: 968,
+    network: isMainnet ? "botchain-mainnet" : "botchain-testnet",
+    chainId: chainId,
     deployedAt: new Date().toISOString(),
     deployer: deployer.address,
+    explorerUrl: `${explorerUrl}/address/${contractAddress}`,
   };
   fs.writeFileSync(
     path.join(deploymentDir, "diamondScopeAddress.json"),
@@ -64,4 +70,3 @@ main().catch((error) => {
   console.error("Deployment failed:", error);
   process.exitCode = 1;
 });
-

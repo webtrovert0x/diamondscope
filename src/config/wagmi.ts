@@ -3,6 +3,26 @@ import { createAppKit } from '@reown/appkit/react';
 import { WagmiAdapter } from '@reown/appkit-adapter-wagmi';
 import { http } from 'wagmi';
 
+// Define Botchain Mainnet
+export const botchainMainnet = defineChain({
+  id: 677,
+  name: 'Botchain Mainnet',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'BOT Token',
+    symbol: 'BOT',
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://rpc.botchain.ai'],
+    },
+  },
+  blockExplorers: {
+    default: { name: 'BotchainScan', url: 'https://scan.botchain.ai' },
+  },
+  testnet: false,
+});
+
 // Define Botchain Testnet
 export const botchainTestnet = defineChain({
   id: 968,
@@ -23,7 +43,7 @@ export const botchainTestnet = defineChain({
   testnet: true,
 });
 
-export const networks = [botchainTestnet];
+export const networks = [botchainMainnet, botchainTestnet];
 
 // Read REOWN_ID injected via vite.config.ts define or fallback
 export const projectId = (typeof process !== 'undefined' && process.env?.REOWN_ID) || '';
@@ -31,8 +51,9 @@ export const projectId = (typeof process !== 'undefined' && process.env?.REOWN_I
 // Wagmi Adapter Setup
 export const wagmiAdapter = new WagmiAdapter({
   networks,
-  projectId: projectId || 'b56e18d47c72ab683b10814fe9495694', // fallback dummy id to prevent app crash if empty
+  projectId: projectId || 'b56e18d47c72ab683b10814fe9495694',
   transports: {
+    [botchainMainnet.id]: http('https://rpc.botchain.ai'),
     [botchainTestnet.id]: http('https://rpc.bohr.life'),
   },
 });
@@ -42,15 +63,15 @@ export const wagmiConfig = wagmiAdapter.wagmiConfig;
 // Initialize Reown AppKit
 export const metadata = {
   name: 'DiamondScope',
-  description: 'EIP-2535 Diamond Inspector for Botchain Testnet',
-  url: 'https://diamondscope.app',
-  icons: ['https://scan.bohr.life/favicon.ico'],
+  description: 'EIP-2535 Diamond Inspector for Botchain',
+  url: 'https://diamondscope.vercel.app',
+  icons: ['https://scan.botchain.ai/favicon.ico'],
 };
 
 export const modal = createAppKit({
   adapters: [wagmiAdapter],
-  networks: [botchainTestnet],
-  defaultNetwork: botchainTestnet,
+  networks: [botchainMainnet, botchainTestnet],
+  defaultNetwork: botchainMainnet,
   projectId: projectId || 'b56e18d47c72ab683b10814fe9495694',
   metadata,
   themeMode: 'light',
@@ -66,4 +87,3 @@ export const modal = createAppKit({
     socials: [],
   },
 });
-

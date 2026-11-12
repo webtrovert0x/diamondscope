@@ -3,6 +3,7 @@ import { useAccount, useWriteContract, useWaitForTransactionReceipt, usePublicCl
 import { X, CheckCircle2, AlertCircle, Fuel, ExternalLink, Loader2, ArrowRight } from 'lucide-react';
 import { diamondScopeAbi } from '../contracts/diamondScopeAbi';
 import deploymentInfo from '../contracts/diamondScopeAddress.json';
+import { getExplorerTxUrl } from '../utils/explorer';
 
 interface SubmitInspectionModalProps {
   isOpen: boolean;
@@ -202,12 +203,12 @@ export const SubmitInspectionModal: React.FC<SubmitInspectionModalProps> = ({
 
             {requestTxHash && (
               <a
-                href={`https://scan.bohr.life/tx/${requestTxHash}`}
+                href={getExplorerTxUrl(requestTxHash)}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-2 inline-flex items-center gap-1 text-[11px] text-emerald-600 hover:text-emerald-700 font-medium"
               >
-                <span>View Request Tx on BohrScan</span>
+                <span>View Request Tx on Explorer</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             )}
@@ -248,12 +249,12 @@ export const SubmitInspectionModal: React.FC<SubmitInspectionModalProps> = ({
 
             {publishTxHash && (
               <a
-                href={`https://scan.bohr.life/tx/${publishTxHash}`}
+                href={getExplorerTxUrl(publishTxHash)}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-2 inline-flex items-center gap-1 text-[11px] text-emerald-600 hover:text-emerald-700 font-medium"
               >
-                <span>View Publish Tx on BohrScan</span>
+                <span>View Publish Tx on Explorer</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             )}

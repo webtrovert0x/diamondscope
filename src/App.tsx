@@ -201,7 +201,7 @@ export const App: React.FC = () => {
                 <div>
                   <h2 className="text-xl font-bold text-slate-900">DiamondScope Smart Contract</h2>
                   <p className="text-xs text-slate-500">
-                    On-chain audit recording system • Botchain Testnet (Chain ID 968)
+                    On-chain audit recording system • Botchain Mainnet (Chain ID 677) & Testnet (Chain ID 968)
                   </p>
                 </div>
               </div>
@@ -222,26 +222,38 @@ export const App: React.FC = () => {
               {/* Botchain Parameters */}
               <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs font-mono">
                 <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-                  <span className="text-slate-400 block font-sans">Network Name</span>
-                  <span className="font-bold text-slate-900 mt-1 block">Botchain Testnet</span>
+                  <span className="text-slate-400 block font-sans">Network</span>
+                  <div className="flex items-center gap-1.5 mt-1 font-bold text-slate-900">
+                    <img src="/botchain-logo.png" alt="Botchain Logo" className="w-4 h-4 rounded-full object-contain" />
+                    <span>Botchain Mainnet</span>
+                  </div>
                 </div>
                 <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                   <span className="text-slate-400 block font-sans">Chain ID</span>
-                  <span className="font-bold text-slate-900 mt-1 block">968</span>
+                  <span className="font-bold text-slate-900 mt-1 block">677</span>
                 </div>
                 <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-                  <span className="text-slate-400 block font-sans">Native Token</span>
-                  <span className="font-bold text-slate-900 mt-1 block">BOT</span>
-                </div>
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-                  <span className="text-slate-400 block font-sans">RPC Endpoint</span>
+                  <span className="text-slate-400 block font-sans">Official Website</span>
                   <a
-                    href="https://rpc.bohr.life"
+                    href="https://botchain.ai"
                     target="_blank"
                     rel="noreferrer"
-                    className="font-bold text-emerald-700 mt-1 block hover:underline truncate"
+                    className="flex items-center gap-1.5 font-bold text-emerald-700 mt-1 hover:underline truncate"
                   >
-                    https://rpc.bohr.life
+                    <img src="/botchain-logo.png" alt="Botchain Logo" className="w-3.5 h-3.5 rounded-full object-contain" />
+                    <span>https://botchain.ai</span>
+                  </a>
+                </div>
+                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                  <span className="text-slate-400 block font-sans">Official Explorer</span>
+                  <a
+                    href="https://scan.botchain.ai"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1.5 font-bold text-emerald-700 mt-1 hover:underline truncate"
+                  >
+                    <img src="/botchain-logo.png" alt="Botchain Logo" className="w-3.5 h-3.5 rounded-full object-contain" />
+                    <span>https://scan.botchain.ai</span>
                   </a>
                 </div>
               </div>
@@ -253,12 +265,12 @@ export const App: React.FC = () => {
                   Your project has a ready-to-use <code className="font-mono text-emerald-800 bg-emerald-50 px-1 py-0.5 rounded">.env</code> file in the project root:
                 </p>
                 <div className="p-4 rounded-xl bg-slate-900 text-slate-100 font-mono text-xs overflow-x-auto">
-                  <pre>{`# DiamondScope Configuration - Botchain Testnet
+                  <pre>{`# DiamondScope Configuration - Botchain Mainnet
 PRIVATE_KEY=your_private_key_here
 REOWN_ID=your_reown_project_id_here
-RPC_URL=https://rpc.bohr.life
-CHAIN_ID=968
-EXPLORER_URL=https://scan.bohr.life/`}</pre>
+RPC_URL=https://rpc.botchain.ai
+CHAIN_ID=677
+EXPLORER_URL=https://scan.botchain.ai/`}</pre>
                 </div>
               </div>
 
@@ -290,21 +302,34 @@ EXPLORER_URL=https://scan.bohr.life/`}</pre>
 
       {/* Footer */}
       <footer className="bg-white border-t border-slate-200 py-6 text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <Gem className="w-4 h-4 text-emerald-600" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5">
+            <img src="/diamondscope-logo.svg" alt="DiamondScope" className="w-5 h-5 rounded-md object-contain" />
             <span className="font-bold text-slate-800">DiamondScope</span>
             <span>• EIP-2535 Loupe Inspector</span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4">
             <a
-              href="https://scan.bohr.life/"
+              href="https://botchain.ai"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-emerald-700 transition"
+              className="flex items-center gap-1.5 hover:text-emerald-700 transition"
+              title="Official Botchain Website"
             >
-              BohrScan Explorer
+              <img src="/botchain-logo.png" alt="Botchain Logo" className="w-4 h-4 rounded-full object-contain shrink-0" />
+              <span>botchain.ai</span>
+            </a>
+            <span>•</span>
+            <a
+              href="https://scan.botchain.ai/"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1.5 hover:text-emerald-700 transition"
+              title="Official Botchain Explorer"
+            >
+              <img src="/botchain-logo.png" alt="Botchain Logo" className="w-4 h-4 rounded-full object-contain shrink-0" />
+              <span>scan.botchain.ai</span>
             </a>
             <span>•</span>
             <a

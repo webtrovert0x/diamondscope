@@ -18,10 +18,19 @@ module.exports = {
   },
   networks: {
     botchain: {
-      url: process.env.RPC_URL || "https://rpc.bohr.life",
-      chainId: parseInt(process.env.CHAIN_ID || "968"),
+      url: process.env.RPC_URL || "https://rpc.botchain.ai",
+      chainId: parseInt(process.env.CHAIN_ID || "677"),
+      accounts: [PRIVATE_KEY],
+    },
+    mainnet: {
+      url: "https://rpc.botchain.ai",
+      chainId: 677,
+      accounts: [PRIVATE_KEY],
+    },
+    testnet: {
+      url: "https://rpc.bohr.life",
+      chainId: 968,
       accounts: [PRIVATE_KEY],
     },
   },
 };
-

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Layers, ChevronRight, Hash, Code, ExternalLink, Sparkles, CheckCircle2 } from 'lucide-react';
 import { classifyFacet } from '../utils/selectors';
+import { getExplorerAddressUrl } from '../utils/explorer';
 
 interface FacetData {
   address: string;
@@ -87,11 +88,11 @@ export const ArchitectureGraph: React.FC<ArchitectureGraphProps> = ({
                 </div>
               </div>
               <a
-                href={`https://scan.bohr.life/address/${diamondAddress}`}
+                href={getExplorerAddressUrl(diamondAddress)}
                 target="_blank"
                 rel="noreferrer"
                 className="text-emerald-600 hover:text-emerald-700 p-1.5 rounded-lg hover:bg-emerald-50 transition"
-                title="View on BohrScan"
+                title="View on Explorer"
               >
                 <ExternalLink className="w-4 h-4" />
               </a>
@@ -182,12 +183,12 @@ export const ArchitectureGraph: React.FC<ArchitectureGraphProps> = ({
                   </h3>
                 </div>
                 <a
-                  href={`https://scan.bohr.life/address/${selectedFacet.address}`}
+                  href={getExplorerAddressUrl(selectedFacet.address)}
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center gap-1 text-xs text-emerald-600 hover:text-emerald-700 font-medium px-2 py-1 bg-emerald-50 rounded-lg hover:bg-emerald-100 transition"
                 >
-                  <span>BohrScan</span>
+                  <span>Explorer</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </div>

@@ -1,9 +1,10 @@
 # DiamondScope: Formal Observability, Architecture Mapping, and Diagnostic Protocol for EIP-2535 Diamond Contracts
 
-**Whitepaper v1.0**  
-**Network**: Botchain Testnet (Chain ID: `968`)  
+**Whitepaper v1.1**  
+**Production Network**: Botchain Mainnet (Chain ID: `677`)  
+**Testnet**: Botchain Testnet (Chain ID: `968`)  
 **Native Currency**: BOT  
-**Protocol Core**: [`0x7DF571308dbb62a385064B8115F72497CfcC5f34`](https://scan.bohr.life/address/0x7DF571308dbb62a385064B8115F72497CfcC5f34)  
+**Mainnet Protocol Core**: [`0x63fE2E161E2f00bFf5C1Df8Ff78807A7a7E0E380`](https://scan.botchain.ai/address/0x63fE2E161E2f00bFf5C1Df8Ff78807A7a7E0E380)  
 **Date**: November 2026  
 
 ---
@@ -14,7 +15,7 @@ The Ethereum Improvement Proposal 2535 (EIP-2535), colloquially known as the **D
 
 However, this modular flexibility introduces severe opacity: as diamonds accumulate dozens of facets and hundreds of functions, tracking dynamic routing tables, identifying selector collisions, confirming active upgradeability vectors, and verifying standard compliance becomes increasingly difficult.
 
-**DiamondScope** is a decentralized inspection, formal introspection, and diagnostic protocol engineered for EIP-2535 Diamonds on the **Botchain Testnet**. DiamondScope provides real-time facet mapping, 4-byte selector decoding, automated security diagnostics, and an immutable on-chain audit ledger. Operating strictly on a **gas-fee-only economic model** (zero protocol fees, zero value transfers), DiamondScope democratizes high-fidelity diamond observability for developers, auditors, and end-users.
+**DiamondScope** is a decentralized inspection, formal introspection, and diagnostic protocol engineered for EIP-2535 Diamonds deployed natively on **Botchain Mainnet** (and Botchain Testnet). DiamondScope provides real-time facet mapping, 4-byte selector decoding, automated security diagnostics, and an immutable on-chain audit ledger. Operating strictly on a **gas-fee-only economic model** (zero protocol fees, zero value transfers), DiamondScope democratizes high-fidelity diamond observability for developers, auditors, and end-users.
 
 ---
 
@@ -103,7 +104,7 @@ struct DiamondRequest {
 
 ### 3.2 Non-Extractive Economics: Strictly Gas-Fee-Only
 Unlike traditional security or notary protocols that introduce arbitrary rent extraction (e.g., protocol tokens, mandatory service fees, or protocol cuts), DiamondScope operates under a **pure gas-fee-only design**:
-- `msg.value == 0` is strictly enforced.
+- `msg.value == 0` is strictly enforced across all functions.
 - Functions require zero payment to the protocol.
 - Users exclusively pay the native network validator gas fees in `BOT` token.
 
@@ -126,21 +127,34 @@ DiamondScope runs real-time automated security heuristics during every inspectio
 
 ## 5. Network & Deployment Specifications
 
-### 5.1 Botchain Testnet Parameters
+### 5.1 Botchain Mainnet Parameters (Production)
+- **Chain ID**: `677`
+- **RPC URL**: `https://rpc.botchain.ai`
+- **Native Currency**: `BOT` (18 Decimals)
+- **Block Explorer**: `https://scan.botchain.ai/`
+
+### 5.2 Botchain Testnet Parameters
 - **Chain ID**: `968`
 - **RPC URL**: `https://rpc.bohr.life`
-- **Native Currency**: `BOT` (18 Decimals)
 - **Block Explorer**: `https://scan.bohr.life/`
 
-### 5.2 Canonical Deployments
+### 5.3 Canonical Deployments
+
+#### Mainnet (Chain ID `677`)
+- **`DiamondScope.sol` Registry**:  
+  [`0x63fE2E161E2f00bFf5C1Df8Ff78807A7a7E0E380`](https://scan.botchain.ai/address/0x63fE2E161E2f00bFf5C1Df8Ff78807A7a7E0E380)
+- **Reference EIP-2535 Diamond**:  
+  [`0xCEe8b58FcD03703ef89F07C749F3AE26439ad223`](https://scan.botchain.ai/address/0xCEe8b58FcD03703ef89F07C749F3AE26439ad223)
+  - `DiamondCutFacet`: `0xF28FDD042AdfC422aE53A77A397a78A2B284857B`
+  - `DiamondLoupeFacet`: `0xA4a706bA8d936B28E6Dc56f69c6A91174AEeF33f`
+  - `OwnershipFacet`: `0x2C2691A079BB2e672Db493972C792D9a233e3118`
+  - `SampleVaultFacet`: `0xef58042274194aC23e1BE02115CD086119671eDD`
+
+#### Testnet (Chain ID `968`)
 - **`DiamondScope.sol` Registry**:  
   [`0x7DF571308dbb62a385064B8115F72497CfcC5f34`](https://scan.bohr.life/address/0x7DF571308dbb62a385064B8115F72497CfcC5f34)
 - **Reference EIP-2535 Diamond**:  
   [`0x4687550cE4CdCAd54F2b7E0eeDDaa4A49f7fB98E`](https://scan.bohr.life/address/0x4687550cE4CdCAd54F2b7E0eeDDaa4A49f7fB98E)
-  - `DiamondCutFacet`: `0x571D629F88BBB51C8811C2142828CE2905192df9`
-  - `DiamondLoupeFacet`: `0xB532F24d529115070897B446D8a756Fa58D3bBDE`
-  - `OwnershipFacet`: `0x2e73561f29207c24af703F1572c534d8EA2a5a63`
-  - `SampleVaultFacet`: `0x6f285f2a94825F07eB2EDB18ebb943E4F3551f27`
 
 ---
 
@@ -152,14 +166,6 @@ DiamondScope runs real-time automated security heuristics during every inspectio
 
 ---
 
-## 7. Roadmap
+## 7. Conclusion
 
-- **v1.1**: Automated storage collision checking across facets (AppStorage / DiamondStorage slot hash overlap analysis).
-- **v1.2**: Historic facet version diffing: comparing diamond cuts over time from block history.
-- **v1.3**: Automated byte-level decompiler integration for unverified facets.
-
----
-
-## 8. Conclusion
-
-DiamondScope provides a foundational observability layer for modular smart contracts. By coupling standard EIP-2535 Loupe introspection with automated security heuristics and a gas-fee-only on-chain ledger on Botchain Testnet, DiamondScope establishes an open, trustless standard for Diamond contract governance and auditing.
+DiamondScope provides a foundational observability layer for modular smart contracts. By coupling standard EIP-2535 Loupe introspection with automated security heuristics and a gas-fee-only on-chain ledger on Botchain Mainnet, DiamondScope establishes an open, trustless standard for Diamond contract governance and auditing.

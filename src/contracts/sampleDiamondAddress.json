@@ -1,10 +1,13 @@
 {
-  "diamondAddress": "0x4687550cE4CdCAd54F2b7E0eeDDaa4A49f7fB98E",
+  "diamondAddress": "0xCEe8b58FcD03703ef89F07C749F3AE26439ad223",
   "facets": {
-    "DiamondCutFacet": "0x571D629F88BBB51C8811C2142828CE2905192df9",
-    "DiamondLoupeFacet": "0xB532F24d529115070897B446D8a756Fa58D3bBDE",
-    "OwnershipFacet": "0x2e73561f29207c24af703F1572c534d8EA2a5a63",
-    "SampleVaultFacet": "0x6f285f2a94825F07eB2EDB18ebb943E4F3551f27"
+    "DiamondCutFacet": "0xF28FDD042AdfC422aE53A77A397a78A2B284857B",
+    "DiamondLoupeFacet": "0xA4a706bA8d936B28E6Dc56f69c6A91174AEeF33f",
+    "OwnershipFacet": "0x2C2691A079BB2e672Db493972C792D9a233e3118",
+    "SampleVaultFacet": "0xef58042274194aC23e1BE02115CD086119671eDD"
   },
-  "deployedAt": "2026-11-01T08:37:07.611Z"
+  "network": "botchain-mainnet",
+  "chainId": 677,
+  "deployedAt": "2026-11-12T07:45:02.346Z",
+  "explorerUrl": "https://scan.botchain.ai/address/0xCEe8b58FcD03703ef89F07C749F3AE26439ad223"
 }

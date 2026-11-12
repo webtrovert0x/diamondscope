@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="scopeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="50%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Container -->
+  <rect x="2" y="2" width="96" height="96" rx="24" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
+  
+  <!-- Scope Optical Reticle Ring -->
+  <circle cx="50" cy="50" r="38" fill="none" stroke="url(#ringGrad)" stroke-width="2" stroke-dasharray="4 2" opacity="0.4" />
+  <circle cx="50" cy="50" r="32" fill="#ecfdf5" opacity="0.7" />
+
+  <!-- Scope Crosshair Target Marks -->
+  <line x1="50" y1="8" x2="50" y2="17" stroke="#059669" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="50" y1="83" x2="50" y2="92" stroke="#059669" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="8" y1="50" x2="17" y2="50" stroke="#059669" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="83" y1="50" x2="92" y2="50" stroke="#059669" stroke-width="2.5" stroke-linecap="round" />
+
+  <!-- Multi-Facet Diamond Geometry -->
+  <!-- Top Table -->
+  <polygon points="34,31 66,31 59,39 41,39" fill="#a7f3d0" />
+  <!-- Upper Left Star Facet -->
+  <polygon points="23,40 34,31 41,39" fill="#6ee7b7" />
+  <!-- Upper Right Star Facet -->
+  <polygon points="77,40 66,31 59,39" fill="#34d399" />
+  <!-- Middle Center Facet -->
+  <polygon points="41,39 59,39 50,48" fill="#d1fae5" />
+  <!-- Upper Girdle Left -->
+  <polygon points="23,40 41,39 50,48 23,48" fill="#10b981" />
+  <!-- Upper Girdle Right -->
+  <polygon points="77,40 59,39 50,48 77,48" fill="#059669" />
+  <!-- Lower Pavilion Left -->
+  <polygon points="23,48 50,48 50,74" fill="#047857" />
+  <!-- Lower Pavilion Right -->
+  <polygon points="77,48 50,48 50,74" fill="#065f46" />
+
+  <!-- Diamond Outer Contour Stroke -->
+  <polygon points="34,31 66,31 77,40 77,48 50,74 23,48 23,40" fill="none" stroke="#064e3b" stroke-width="2.5" stroke-linejoin="round" />
+  
+  <!-- Facet Edge Reflections -->
+  <line x1="34" y1="31" x2="50" y2="48" stroke="#ffffff" stroke-width="1.2" opacity="0.85" />
+  <line x1="66" y1="31" x2="50" y2="48" stroke="#ffffff" stroke-width="1.2" opacity="0.85" />
+  <line x1="23" y1="48" x2="77" y2="48" stroke="#ffffff" stroke-width="1" opacity="0.6" />
+  <line x1="50" y1="48" x2="50" y2="74" stroke="#ffffff" stroke-width="1.5" opacity="0.9" />
+
+  <!-- Scope Reticle Focal Center -->
+  <circle cx="50" cy="50" r="3" fill="#ffffff" stroke="#059669" stroke-width="1.5" />
+</svg>

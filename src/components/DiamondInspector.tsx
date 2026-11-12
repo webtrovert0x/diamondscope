@@ -22,6 +22,7 @@ import {
 import { diamondLoupeAbi } from '../contracts/diamondLoupeAbi';
 import { diamondScopeAbi } from '../contracts/diamondScopeAbi';
 import { resolveSelector } from '../utils/selectors';
+import { getExplorerAddressUrl, getExplorerTxUrl } from '../utils/explorer';
 import { ArchitectureGraph } from './ArchitectureGraph';
 import { FacetList } from './FacetList';
 import { InspectionWarnings } from './InspectionWarnings';
@@ -429,7 +430,7 @@ export const DiamondInspector: React.FC<DiamondInspectorProps> = ({
             </h1>
           </div>
           <p className="text-xs sm:text-sm text-slate-500 mt-1">
-            Submits on-chain inspection transaction and analyzes facet architecture • Botchain Testnet (968)
+            Submits on-chain inspection transaction and analyzes facet architecture • Botchain Mainnet (677)
           </p>
         </div>
 
@@ -516,12 +517,12 @@ export const DiamondInspector: React.FC<DiamondInspectorProps> = ({
               </div>
               {txHash && (
                 <a
-                  href={`https://scan.bohr.life/tx/${txHash}`}
+                  href={getExplorerTxUrl(txHash)}
                   target="_blank"
                   rel="noreferrer"
                   className="px-2.5 py-1 rounded-md bg-white border border-emerald-200 text-xs font-semibold text-emerald-800 flex items-center gap-1 hover:bg-emerald-50 transition shrink-0"
                 >
-                  <span>BohrScan</span>
+                  <span>Explorer</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
               )}
@@ -547,12 +548,12 @@ export const DiamondInspector: React.FC<DiamondInspectorProps> = ({
 
               <div className="flex items-center gap-2 shrink-0">
                 <a
-                  href={`https://scan.bohr.life/tx/${txHash}`}
+                  href={getExplorerTxUrl(txHash)}
                   target="_blank"
                   rel="noreferrer"
                   className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs flex items-center gap-1.5 shadow-xs transition"
                 >
-                  <span>View Tx on BohrScan</span>
+                  <span>View Tx on Explorer</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
@@ -596,11 +597,11 @@ export const DiamondInspector: React.FC<DiamondInspectorProps> = ({
                     )}
                   </button>
                   <a
-                    href={`https://scan.bohr.life/address/${analyzedAddress}`}
+                    href={getExplorerAddressUrl(analyzedAddress)}
                     target="_blank"
                     rel="noreferrer"
                     className="p-1 text-slate-400 hover:text-emerald-700 transition"
-                    title="View on BohrScan Explorer"
+                    title="View on Explorer"
                   >
                     <ExternalLink className="w-4 h-4" />
                   </a>

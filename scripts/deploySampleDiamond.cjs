@@ -2,23 +2,18 @@ const hre = require("hardhat");
 const fs = require("fs");
 const path = require("path");
 
-function getSelectors(contract) {
-  const signatures = Object.keys(contract.interface.fragments.reduce((acc, fragment) => {
-    if (fragment.type === "function") {
-      acc[fragment.format()] = true;
-    }
-    return acc;
-  }, {}));
-  
-  const selectors = signatures.map((sig) => contract.interface.getFunction(sig).selector);
-  return selectors;
-}
-
 async function main() {
+  const chainId = Number(hre.network.config.chainId || 677);
+  const isMainnet = chainId === 677;
+  const explorerUrl = isMainnet ? "https://scan.botchain.ai" : "https://scan.bohr.life";
+  const networkName = isMainnet ? "Botchain Mainnet (Chain ID 677)" : "Botchain Testnet (Chain ID 968)";
+
   console.log("--------------------------------------------------");
-  console.log("Deploying Sample EIP-2535 Diamond to Botchain Testnet...");
+  console.log(`Deploying Sample EIP-2535 Diamond to ${networkName}...`);
   const [deployer] = await hre.ethers.getSigners();
   console.log("Deployer:", deployer.address);
+  const balance = await hre.ethers.provider.getBalance(deployer.address);
+  console.log("Deployer BOT balance:", hre.ethers.formatEther(balance), "BOT");
 
   // 1. Deploy DiamondCutFacet
   console.log("1/5 Deploying DiamondCutFacet...");
@@ -62,14 +57,6 @@ async function main() {
 
   // Cut facets into Diamond
   console.log("Cutting facets into Diamond...");
-  const loupeSelectors = [
-    "0xcdffacc6", // facets()
-    "0x52f0bee0", // facetFunctionSelectors(address)
-    "0xadf4977f", // facetAddresses()
-    "0xcdffacc6", // facetAddress(bytes4) - will fix with actual selectors below
-    "0x01ffc9a7", // supportsInterface(bytes4)
-  ];
-
   const loupeFunctions = [
     diamondLoupeFacet.interface.getFunction("facets()").selector,
     diamondLoupeFacet.interface.getFunction("facetFunctionSelectors(address)").selector,
@@ -121,7 +108,7 @@ async function main() {
   console.log("DiamondLoupeFacet:", diamondLoupeFacetAddress);
   console.log("OwnershipFacet:", ownershipFacetAddress);
   console.log("SampleVaultFacet:", sampleVaultFacetAddress);
-  console.log("Explorer:", `https://scan.bohr.life/address/${diamondAddress}`);
+  console.log("Explorer:", `${explorerUrl}/address/${diamondAddress}`);
   console.log("--------------------------------------------------");
 
   // Save sample diamond address to frontend
@@ -137,7 +124,10 @@ async function main() {
       OwnershipFacet: ownershipFacetAddress,
       SampleVaultFacet: sampleVaultFacetAddress,
     },
+    network: isMainnet ? "botchain-mainnet" : "botchain-testnet",
+    chainId,
     deployedAt: new Date().toISOString(),
+    explorerUrl: `${explorerUrl}/address/${diamondAddress}`,
   };
   fs.writeFileSync(
     path.join(deploymentDir, "sampleDiamondAddress.json"),
@@ -149,4 +139,3 @@ main().catch((error) => {
   console.error("Deploy sample diamond failed:", error);
   process.exitCode = 1;
 });
-

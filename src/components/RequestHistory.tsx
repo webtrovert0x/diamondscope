@@ -1,5 +1,6 @@
 import React from 'react';
 import { History, ExternalLink, ArrowRight, Clock, CheckCircle2, FileSearch } from 'lucide-react';
+import { getExplorerAddressUrl } from '../utils/explorer';
 
 export interface AuditRecord {
   requestId: number;
@@ -112,11 +113,11 @@ export const RequestHistory: React.FC<RequestHistoryProps> = ({
                 {/* Inspect Action */}
                 <div className="flex items-center gap-2 shrink-0">
                   <a
-                    href={`https://scan.bohr.life/address/${rec.diamondAddress}`}
+                    href={getExplorerAddressUrl(rec.diamondAddress)}
                     target="_blank"
                     rel="noreferrer"
                     className="p-2 rounded-lg text-slate-400 hover:text-emerald-700 hover:bg-slate-100 transition"
-                    title="View on BohrScan"
+                    title="View on Explorer"
                   >
                     <ExternalLink className="w-4 h-4" />
                   </a>
